@@ -1,4 +1,5 @@
 class Game {
+
     constructor(config){
         this.score = 0;
         this.mode = 'easy';
@@ -7,6 +8,8 @@ class Game {
         this.col = document.getElementsByClassName('col')[0];
         this.body = document.getElementsByTagName('body')[0];
         this.config = config;
+
+      
     }
     
     updatePumps(){
@@ -47,7 +50,8 @@ class Game {
      this.moveBackgroundImage();
     },this.config[this.mode].speed-1);
     }
-            changeMode(str){
+
+    changeMode(str){
         if(['easy','medium','hard'].indexOf(str) !== -1){
             this.mode = str;
         }
