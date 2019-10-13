@@ -8,6 +8,7 @@ class Character {
             x: 50,
             y: (gameHeight / 2) - (this.width / 2)
         }
+        this.status = "moving";
         this.speed = 0;
         this.gravity = 3;
         this.src = srcNormal;
@@ -17,21 +18,31 @@ class Character {
     }
 
     draw() {
-        this.character = document.getElementById("character");
-        character.src = this.srcNormal;
-        character.style.position = "fixed";
-        character.style.left = this.position.x + "px";
-        character.style.top = this.position.y + "px";
+        this.characterElement = document.getElementById("character");
+        this.characterElement.src = this.srcNormal;
+        this.characterElement.style.position = "fixed";
+        this.characterElement.style.left = this.position.x + "px";
+        this.characterElement.style.top = this.position.y + "px";
     }
 
     goUp() {
-        this.speed = -this.gravity;
-        this.src = this.srcUp;
+        if (this.status !== "stoped") {
+            this.speed = -this.gravity;
+            this.src = this.srcUp;
+        }
     }
 
     goDown() {
-        this.speed = this.gravity;
-        this.src = this.srcDown;
+        if (this.status !== "stoped") {
+            this.speed = this.gravity;
+            this.src = this.srcDown;
+        }
+    }
+
+    stop() {
+        this.speed = 0;
+        this.src = this.srcNormal;
+        this.status = "stoped";
     }
 
     update() {
@@ -45,9 +56,9 @@ class Character {
             this.src = this.srcNormal;
         }
 
-        character.style.top = this.position.y + "px";
-        if (!this.character.src.includes(this.src)) {
-            character.src = this.src;
+        this.characterElement.style.top = this.position.y + "px";
+        if (!this.characterElement.src.includes(this.src)) {
+            this.characterElement.src = this.src;
         }
     }
 }
