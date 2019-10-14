@@ -38,8 +38,6 @@ class Game {
     }
     startGame() {
         this.character.characterElement.style.display = 'initial';
-        var menu = document.getElementsByClassName('menu')[0];
-        menu.remove();
         setInterval(() => {
             this.createPumps();
         }, this.config[this.mode].creationSpeed);

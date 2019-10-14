@@ -6,13 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./index.css">
-    <title>Document</title>
+    <title>Avengers Adventures</title>
 </head>
 
 <body>
+        <audio controls id="backgroundAudio" autoplay hidden>
+            <source src="assets/intro.MP3" type="audio/mp3">
+        </audio> 
     <img id="character" height="100" style="display:none; object-fit: scale-down;">
     <div class="menu">
-        <button id='start' onclick="game.startGame()">
+        <img src="assets/Avengers Logo.gif" width="250px"/>
+        <button id='start' onclick="dispalyChooseCharacter()">
             Start
         </button>
         <div class="modes">
@@ -25,6 +29,15 @@
         </button>
         <p class="help" hidden>Avoid the pipes using the space bar and try to beat your high score </p>
     </div>
+    <div class="charactersMenu" id="charactersMenu" style="display: none;">
+    
+            <img src="assets/Avengers Logo.gif" width="150px" class="logoImg"/>
+    <div class="characters">
+            <h1>Choose your character</h1>
+            <button onclick="chooseCharacter('Ironman');"><img src="assets/Ironman choose character.gif" alt="Ironman" title="Ironman" width="200px"/></button>
+            <button onclick="chooseCharacter('Thor');"><img src="assets/Thor choose character.gif" alt="Thor" title="Thor" width="200px"/></button>
+    </div>
+</div>
     <script src="./js/Inputhandler.js"></script>
     <script src="./js/Character.js"></script>
     <script src="./js/config.js"></script>
