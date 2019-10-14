@@ -51,8 +51,7 @@ class Game {
         this.scoreParagraph.textContent = this.score;
         this.body.appendChild(this.scoreParagraph);
         this.character.characterElement.style.display = 'initial';
-        var menu = document.getElementsByClassName('menu')[0];
-        menu.remove();
+
         this.pumpCreation = setInterval(() => {
             this.createPumps();
         }, this.config[this.mode].creationSpeed);
