@@ -102,3 +102,44 @@ body {
     color: #fcfcfcc0;
     font-family: fantasy;
 }
+
+.charactersMenu
+{
+    display: block;
+    padding: 2%;
+    text-align: center;
+    font-family: 'comic sans ms';
+}
+.characters
+{
+    border-radius: 10px;
+   border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border: 1px solid transparent !important;
+    
+    background-image: linear-gradient(#eb9ff6, #e777f8, #695cd1);
+
+    
+
+}
+.logoImg
+{
+    position: relative; 
+    z-index: 1;
+    top:3vh;
+}
+
+.characters img
+{
+    display: inline;
+   
+}
+.characters button
+{
+    background-color: transparent;
+    border: none;
+}
+.characters button:hover
+{
+    cursor: pointer;
+}
