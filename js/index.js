@@ -92,7 +92,5 @@ function chooseCharacter(characterName) {
     var game = new Game(config, character);
     game.changeMode(levelMode);
 
-    console.log(game.mode);
-
     game.startGame();
 }

@@ -39,6 +39,18 @@ class Game {
         this.curCols.push(pump.createPump());
     }
     startGame() {
+
+
+        var characterLogo = document.getElementById('characterLogo');
+        var overlayLogo = document.getElementById('overlayLogo');
+        if (this.character.src === "assets/thor.gif")
+        {
+            characterLogo.setAttribute("src","assets/Thor logo.gif");
+        }
+        overlayLogo.style.display = "block";
+        setTimeout(function(){overlayLogo.style.display = "none";},4000);
+        
+
         this.scoreParagraph = document.createElement('p');
         this.scoreParagraph.setAttribute('id', 'score');
         this.scoreParagraph.style.zIndex = 2;
@@ -49,7 +61,19 @@ class Game {
         this.scoreParagraph.style.left = '20px';
         this.scoreParagraph.style.top = '15px';
         this.scoreParagraph.textContent = this.score;
+
+        this.modeParagraph = document.createElement('p');
+        this.modeParagraph.style.zIndex = 2;
+        this.modeParagraph.style.fontFamily = 'game';
+        this.modeParagraph.style.fontSize = '30px';
+        this.modeParagraph.style.color = 'white';
+        this.modeParagraph.style.position = 'absolute';
+        this.modeParagraph.style.left = '20px';
+        this.modeParagraph.style.top = '40px';
+        this.modeParagraph.textContent = this.mode;
+
         this.body.appendChild(this.scoreParagraph);
+        this.body.appendChild(this.modeParagraph);
         this.character.characterElement.style.display = 'initial';
 
         this.pumpCreation = setInterval(() => {
@@ -135,6 +159,7 @@ class Game {
     }
 
     gameOver() {
+        
         this.body.innerHTML = '';
         this.body.style.display = 'flex';
         this.body.style.flexDirection = 'column';
@@ -155,6 +180,11 @@ class Game {
         p.style.color = 'white';
         p.textContent = `score : ${this.score}`;
         this.body.appendChild(p);
+        var backgroundAudio = document.createElement('audio');
+        backgroundAudio.setAttribute('hidden','');
+        backgroundAudio.setAttribute('src', 'assets/gameover.mp3');
+        backgroundAudio.setAttribute('autoplay', '');
+        this.body.appendChild(backgroundAudio);
         setTimeout(() => {
             window.location.reload();
         }, 5000);
