@@ -1,8 +1,12 @@
-var ironManCharacter = new Character(window.innerWidth, window.innerHeight, "assets/Flying_Iron_Man.gif", "assets/Flying_Iron_Man_Up.gif", "assets/Flying_Iron_Man_Down.gif");
 
-new InputHandler(ironManCharacter);
+var ironManCharacterAsset = "assets/iron_man.gif";
+var thorCharacterAsset = "assets/thor.gif";
 
-var game = new Game(config,ironManCharacter);
+var character = new Character(window.innerWidth, window.innerHeight, ironManCharacterAsset);
+
+new InputHandler(character);
+
+var game = new Game(config,character);
 
 function displayHelp(){
     var p = document.getElementsByClassName('help')[0];
