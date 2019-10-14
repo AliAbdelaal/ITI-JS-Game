@@ -8,6 +8,7 @@ class Pump {
 
     createPump(heightUpper,heightLower) {
         var col = document.createElement('div');
+        col.style.zIndex = 1 ;
         col.setAttribute('class','col');
         col.setAttribute('id',`col${this.id}`);
         col.style.position ='fixed';
@@ -17,6 +18,14 @@ class Pump {
         topPump.setAttribute('class','pumpTop');
         var bottomPart = document.createElement('div');
         bottomPart.setAttribute('class','bottomPart');
+        bottomPart.style.position='relative';
+        var img = document.createElement("img");
+        img.setAttribute('src','assets/Avengers Logo.gif');
+        img.setAttribute('width','45px');
+        img.style.position ='absolute';
+        img.style.left='10px';
+        img.style.bottom ='15px';
+        bottomPart.appendChild(img);
         bottomPart.style.height = this.heightUpper;
         var topPart = document.createElement('div');
         topPart.setAttribute('class','topPart');
@@ -26,7 +35,15 @@ class Pump {
         bottomPump.setAttribute('class','pumpBottom');
         bottomPart = document.createElement('div');
         bottomPart.setAttribute('class','bottomPart');
+        bottomPart.style.position='relative';
         bottomPart.style.height = this.heightLower;
+        img = document.createElement("img");
+        img.setAttribute('src','assets/Avengers Logo.gif');
+        img.setAttribute('width','45px');
+        img.style.position ='absolute';
+        img.style.right='10px';
+        img.style.top='15px';
+        bottomPart.appendChild(img);
         topPart = document.createElement('div');
         topPart.setAttribute('class','topPart');
         bottomPump.appendChild(topPart);

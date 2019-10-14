@@ -22,7 +22,7 @@ var config = {
         }
         ],
         creationSpeed:5000,
-        speed:6
+        speed:12
     },
     medium:{
         randomHeights : [{
@@ -47,7 +47,7 @@ var config = {
         }
         ],
         creationSpeed:4000,
-        speed:5
+        speed:10
     },
     hard:{
         randomHeights : [{
@@ -72,6 +72,6 @@ var config = {
         }
         ],
         creationSpeed:3000,
-        speed:3
+        speed:6
     }
 };
