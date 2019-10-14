@@ -12,8 +12,13 @@ class Character {
         this.speed = 0;
         this.gravity = 3;
         this.src = srcNormal;
+        window.onresize = this.updateHeight.bind(this);
     }
 
+    updateHeight() {
+        this.gameHeight = window.innerHeight;
+    }
+    
     draw() {
         this.characterElement = document.getElementById("character");
         this.characterElement.src = this.src;

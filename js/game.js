@@ -13,6 +13,8 @@ class Game {
     }
 
     updatePumps() {
+        if (!this.curCols)
+            return;
         this.curCols.forEach(x => {
             var col = document.getElementById(x);
             var right = +col.style.right.split('px')[0];
@@ -24,8 +26,6 @@ class Game {
             var col = document.getElementById(this.curCols[0]);
             if (+col.style.right.split('px')[0] > window.innerWidth) {
                 document.getElementById(this.curCols[0]).remove();
-                this.score+=10;
-                this.displayscore();
                 this.curCols.shift();
             }
         }
@@ -40,14 +40,14 @@ class Game {
     }
     startGame() {
         this.scoreParagraph = document.createElement('p');
-        this.scoreParagraph.setAttribute('id','score');
+        this.scoreParagraph.setAttribute('id', 'score');
         this.scoreParagraph.style.zIndex = 2;
-        this.scoreParagraph.style.fontFamily ='game';
+        this.scoreParagraph.style.fontFamily = 'game';
         this.scoreParagraph.style.fontSize = '30px';
-        this.scoreParagraph.style.color = 'black';
-        this.scoreParagraph.style.position='absolute';
-        this.scoreParagraph.style.left ='20px';
-        this.scoreParagraph.style.top ='15px';
+        this.scoreParagraph.style.color = 'white';
+        this.scoreParagraph.style.position = 'absolute';
+        this.scoreParagraph.style.left = '20px';
+        this.scoreParagraph.style.top = '15px';
         this.scoreParagraph.textContent = this.score;
         this.body.appendChild(this.scoreParagraph);
         this.character.characterElement.style.display = 'initial';
@@ -58,11 +58,15 @@ class Game {
 
 
         this.pumpUpdate = setInterval(() => {
+            if (!this.character.characterElement || !this.curCols)
+                return;
             this.isOverlapping(this.character.characterElement, document.getElementById(this.curCols[0]).getElementsByClassName('pumpTop')[0].getElementsByClassName('bottomPart')[0]);
             this.isOverlapping(this.character.characterElement, document.getElementById(this.curCols[0]).getElementsByClassName('pumpTop')[0].getElementsByClassName('topPart')[0]);
             this.isOverlapping(this.character.characterElement, document.getElementById(this.curCols[0]).getElementsByClassName('pumpBottom')[0].getElementsByClassName('bottomPart')[0]);
             this.isOverlapping(this.character.characterElement, document.getElementById(this.curCols[0]).getElementsByClassName('pumpBottom')[0].getElementsByClassName('topPart')[0]);
             this.updatePumps();
+            this.score++;
+            this.displayscore();
             //this.moveBackgroundImage();
         }, this.config[this.mode].speed);
 
@@ -74,15 +78,14 @@ class Game {
             this.moveBackgroundImage();
         }, this.config[this.mode].speed - 1);
     }
-    displayscore(){
-       this.scoreParagraph.textContent = this.score ;
+    displayscore() {
+        this.scoreParagraph.textContent = this.score;
     }
     changeMode(str) {
         if (['easy', 'medium', 'hard'].indexOf(str) !== -1) {
             this.mode = str;
-        }
-        else{
-            this.mode='easy';
+        } else {
+            this.mode = 'easy';
         }
     }
 
@@ -118,39 +121,42 @@ class Game {
             )
         }
         if (overlap) {
-         this.ClearIntervals();
-         this.gameOver();
+            this.ClearIntervals();
+            this.gameOver();
         }
         return overlap;
     }
 
-    ClearIntervals(){
+    ClearIntervals() {
+        clearInterval(this.pumpUpdate);
         clearInterval(this.characterUpdate);
         clearInterval(this.pumpCreation);
-        clearInterval(this.pumpUpdate);
         clearInterval(this.backgroundMove);
     }
 
-    gameOver(){
-      this.body.innerHTML ='';
-      this.body.style.display='flex';
-      this.body.style.flexDirection='column';
-      this.body.style.justifyContent='space-evenly';
-      this.body.style.alignItems='center';
-      this.body.style.justifyContent='center';
-      var p = document.createElement('p');
-      p.textContent = 'Game Over';
-      p.style.fontFamily ='game';
-      p.style.fontSize="150px";
-      this.body.appendChild(p);
-      p = document.createElement('p');
-      p.style.fontFamily='game';
-      p.style.fontSize='100px';
-      p.style.color ='white';
-      p.textContent =`score : ${this.score}`;
-      this.body.appendChild(p);
-      setTimeout(()=>{
-          window.location.reload();
-      },5000);
+    gameOver() {
+        this.body.innerHTML = '';
+        this.body.style.display = 'flex';
+        this.body.style.flexDirection = 'column';
+        this.body.style.justifyContent = 'space-evenly';
+        this.body.style.alignItems = 'center';
+        this.body.style.justifyContent = 'center';
+        var p = document.createElement('p');
+        p.textContent = 'Game Over';
+        p.style.fontFamily = 'game';
+        p.style.fontSize = "150px";
+        this.body.appendChild(p);
+        var img = document.createElement('img');
+        img.setAttribute('src', 'assets/Thanos hand.gif');
+        this.body.appendChild(img);
+        p = document.createElement('p');
+        p.style.fontFamily = 'game';
+        p.style.fontSize = '100px';
+        p.style.color = 'white';
+        p.textContent = `score : ${this.score}`;
+        this.body.appendChild(p);
+        setTimeout(() => {
+            window.location.reload();
+        }, 5000);
     }
 }
