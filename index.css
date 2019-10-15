@@ -96,7 +96,7 @@ body {
     box-sizing: border-box;
     box-shadow: 5px;
     flex-shrink: 1;
-    background-color: #ee9d22c0;
+    background-image: linear-gradient(#BB86FC, #6200EE, #3700B3);
     border: 0px;
     color: #fcfcfcc0;
     font-size: 60px;
