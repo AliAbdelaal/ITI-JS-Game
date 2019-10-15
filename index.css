@@ -106,15 +106,16 @@ body {
     text-align: center;
     margin: 20px;
     cursor: pointer;
+    font-family: "comic sans ms";
 }
 
 .menu .help {
-    margin-top: 90px;
+    margin-top: 50px;
     text-align: center;
     font-size: 60px;
     letter-spacing: 5px;
     color: #fcfcfcc0;
-    font-family: fantasy;
+    font-family: "comic sans ms";
 }
 /* Character Menu Section */
 .charactersMenu {
