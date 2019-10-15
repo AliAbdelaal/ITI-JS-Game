@@ -60,7 +60,10 @@ function displayMode() {
     var hard = document.createElement('button');
     hard.innerText = 'Hard';
     hard.setAttribute('onClick', "levelMode = 'hard'");
-    btn.replaceWith(easy, medium, hard);
+    var insane = document.createElement('button');
+    insane.innerText = 'Insane';
+    insane.setAttribute('onClick', "levelMode = 'insane'");
+    btn.replaceWith(easy, medium, hard,insane);
 }
 
 

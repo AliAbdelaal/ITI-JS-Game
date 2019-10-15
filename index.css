@@ -99,12 +99,13 @@ body {
     background-image: linear-gradient(#BB86FC, #6200EE, #3700B3);
     border: 0px;
     color: #fcfcfcc0;
-    font-size: 60px;
+    font-size: 55px;
     letter-spacing: 5px;
     width: 900px;
     height: 140px;
     text-align: center;
     margin: 20px;
+    cursor: pointer;
 }
 
 .menu .help {

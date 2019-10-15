@@ -1,6 +1,7 @@
 class Pump {
     constructor(heightUpper, heightLower) {
-        this.id = Pump.colId++;
+        this.direction = 0.2;
+        this.id = `col${Pump.colId++}`;
         this.heightUpper = heightUpper;
         this.heightLower = heightLower;
         this.body = document.getElementsByTagName('body')[0];
@@ -10,7 +11,7 @@ class Pump {
         var col = document.createElement('div');
         col.style.zIndex = 1;
         col.setAttribute('class', 'col');
-        col.setAttribute('id', `col${this.id}`);
+        col.setAttribute('id', `${this.id}`);
         col.style.position = 'fixed';
         col.style.height = '100%';
         col.style.right = '-200px';
@@ -22,7 +23,7 @@ class Pump {
         col.appendChild(topPump);
         col.appendChild(bottomPump);
         this.body.appendChild(col);
-        return `col${this.id}`;
+        return this;
     }
 
     createTopPump() {

@@ -15,17 +15,45 @@ class Game {
     updatePumps() {
         if (!this.curCols)
             return;
-        this.curCols.forEach(x => {
-            var col = document.getElementById(x);
+        this.curCols.forEach((x) => {
+            var col = document.getElementById(x.id);
             var right = +col.style.right.split('px')[0];
             right = `${right+2}px`;
             col.style.right = right;
+            if(this.mode == 'hard' || this.mode == 'insane'){
+               var bottomPartTop = col.getElementsByClassName('pumpTop')[0].getElementsByClassName('bottomPart')[0];
+               var bottomPartBottom = col.getElementsByClassName('pumpBottom')[0].getElementsByClassName('bottomPart')[0];
+               var heightTop = + bottomPartTop.style.height.split('vh')[0];
+               var heightBottom = + bottomPartBottom.style.height.split('vh')[0];
+               if(this.mode == 'insane'){
+               
+                heightTop += x.direction*2;
+                heightBottom -= x.direction*2;
+               
+            }
+             
+            
+               else{
+            
+               heightTop += x.direction;
+               heightBottom -= x.direction;
+              
+            }
+ 
+
+              
+               if(heightTop <= 1 || heightBottom <=1 )
+                     x.direction = x.direction*-1;
+
+               bottomPartTop.style.height = `${heightTop}vh`;
+               bottomPartBottom.style.height = `${heightBottom}vh`;
+            }
         });
 
         if (this.curCols.length) {
-            var col = document.getElementById(this.curCols[0]);
+            var col = document.getElementById(this.curCols[0].id);
             if (+col.style.right.split('px')[0] > window.innerWidth) {
-                document.getElementById(this.curCols[0]).remove();
+                document.getElementById(this.curCols[0].id).remove();
                 this.curCols.shift();
             }
         }
@@ -84,10 +112,10 @@ class Game {
         this.pumpUpdate = setInterval(() => {
             if (!this.character.characterElement || !this.curCols)
                 return;
-            this.isOverlapping(this.character.characterElement, document.getElementById(this.curCols[0]).getElementsByClassName('pumpTop')[0].getElementsByClassName('bottomPart')[0]);
-            this.isOverlapping(this.character.characterElement, document.getElementById(this.curCols[0]).getElementsByClassName('pumpTop')[0].getElementsByClassName('topPart')[0]);
-            this.isOverlapping(this.character.characterElement, document.getElementById(this.curCols[0]).getElementsByClassName('pumpBottom')[0].getElementsByClassName('bottomPart')[0]);
-            this.isOverlapping(this.character.characterElement, document.getElementById(this.curCols[0]).getElementsByClassName('pumpBottom')[0].getElementsByClassName('topPart')[0]);
+            this.isOverlapping(this.character.characterElement, document.getElementById(this.curCols[0].id).getElementsByClassName('pumpTop')[0].getElementsByClassName('bottomPart')[0]);
+            this.isOverlapping(this.character.characterElement, document.getElementById(this.curCols[0].id).getElementsByClassName('pumpTop')[0].getElementsByClassName('topPart')[0]);
+            this.isOverlapping(this.character.characterElement, document.getElementById(this.curCols[0].id).getElementsByClassName('pumpBottom')[0].getElementsByClassName('bottomPart')[0]);
+            this.isOverlapping(this.character.characterElement, document.getElementById(this.curCols[0].id).getElementsByClassName('pumpBottom')[0].getElementsByClassName('topPart')[0]);
             this.updatePumps();
             this.score++;
             this.displayscore();
@@ -106,7 +134,7 @@ class Game {
         this.scoreParagraph.textContent = this.score;
     }
     changeMode(str) {
-        if (['easy', 'medium', 'hard'].indexOf(str) !== -1) {
+        if (['easy', 'medium', 'hard','insane'].indexOf(str) !== -1) {
             this.mode = str;
         } else {
             this.mode = 'easy';

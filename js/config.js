@@ -50,28 +50,37 @@ var config = {
         speed:10
     },
     hard:{
-        randomHeights : [{
-            heightUpper :"37.5vh",
-            heightLower :'37.5vh'
-        },
-        {
-          heightUpper:'10vh',
-          heightLower:'65vh'
-        },
-        {
-            heightUpper:'0vh',
-            heightLower:'75vh'
-          },
-          {
-            heightUpper:'75vh',
-            heightLower:'0px'
-          },
-        {
-            heightUpper:'65vh',
-            heightLower:'10vh'
-        }
-        ],
-        creationSpeed:3000,
-        speed:6
-    }
+      randomHeights : [{
+          heightUpper :"32.5vh",
+          heightLower :'32.5vh'
+      },
+      {
+        heightUpper:'10vh',
+        heightLower:'55vh'
+      },
+      {
+          heightUpper:'55vh',
+          heightLower:'10vh'
+      }
+      ],
+      creationSpeed:5000,
+      speed:8
+  },
+  insane:{
+    randomHeights : [{
+      heightUpper :"32.5vh",
+      heightLower :'32.5vh'
+  },
+  {
+    heightUpper:'10vh',
+    heightLower:'55vh'
+  },
+  {
+      heightUpper:'55vh',
+      heightLower:'10vh'
+  }
+  ],
+  creationSpeed:5000,
+  speed:8
+  }
 };
