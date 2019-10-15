@@ -50,10 +50,13 @@ class Game {
         }
     }
     createPumps() {
+        var len = 5;
+        if(this.mode == 'hard' || this.mode == 'insane')
+            len = 3;
         const {
             heightUpper,
             heightLower
-        } = this.config[this.mode].randomHeights[Math.floor(Math.random() * 5)];
+        } = this.config[this.mode].randomHeights[Math.floor(Math.random() * len)];
         var pump = new Pump(heightUpper, heightLower);
         this.curCols.push(pump.createPump());
     }
@@ -101,6 +104,7 @@ class Game {
 
 
         this.pumpUpdate = setInterval(() => {
+            try{
             if (!this.character.characterElement || !this.curCols)
                 return;
             this.isOverlapping(this.character.characterElement, document.getElementById(this.curCols[0].id).getElementsByClassName('pumpTop')[0].getElementsByClassName('bottomPart')[0]);
@@ -110,6 +114,10 @@ class Game {
             this.updatePumps();
             this.score++;
             this.displayscore();
+            }
+            catch(e){
+                
+            }
             //this.moveBackgroundImage();
         }, this.config[this.mode].speed);
 
