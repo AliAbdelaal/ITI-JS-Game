@@ -1,9 +1,4 @@
-var ironManCharacterAsset = "assets/iron_man.gif";
-var thorCharacterAsset = "assets/thor.gif";
 var levelMode = 'easy';
-
-
-
 
 var elem = document.documentElement;
 
@@ -40,7 +35,6 @@ function closeFullscreen() {
 }
 
 
-
 function displayHelp() {
     var p = document.getElementsByClassName('help')[0];
     if (p.hasAttribute('hidden'))
@@ -66,8 +60,6 @@ function displayMode() {
     btn.replaceWith(easy, medium, hard,insane);
 }
 
-
-
 function dispalyChooseCharacter() {
     openFullscreen();
     var menu = document.getElementsByClassName('menu')[0];
@@ -79,6 +71,8 @@ function dispalyChooseCharacter() {
 }
 
 function chooseCharacter(characterName) {
+    var ironManCharacterAsset = "assets/iron_man.gif";
+    var thorCharacterAsset = "assets/thor.gif";
     var chooseCharacter = document.getElementById("charactersMenu");
     chooseCharacter.remove();
     var characterAsset = ironManCharacterAsset;

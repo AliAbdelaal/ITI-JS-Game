@@ -20,33 +20,24 @@ class Game {
             var right = +col.style.right.split('px')[0];
             right = `${right+2}px`;
             col.style.right = right;
-            if(this.mode == 'hard' || this.mode == 'insane'){
-               var bottomPartTop = col.getElementsByClassName('pumpTop')[0].getElementsByClassName('bottomPart')[0];
-               var bottomPartBottom = col.getElementsByClassName('pumpBottom')[0].getElementsByClassName('bottomPart')[0];
-               var heightTop = + bottomPartTop.style.height.split('vh')[0];
-               var heightBottom = + bottomPartBottom.style.height.split('vh')[0];
-               if(this.mode == 'insane'){
-               
-                heightTop += x.direction*2;
-                heightBottom -= x.direction*2;
-               
-            }
-             
-            
-               else{
-            
-               heightTop += x.direction;
-               heightBottom -= x.direction;
-              
-            }
- 
+            if (this.mode == 'hard' || this.mode == 'insane') {
+                var bottomPartTop = col.getElementsByClassName('pumpTop')[0].getElementsByClassName('bottomPart')[0];
+                var bottomPartBottom = col.getElementsByClassName('pumpBottom')[0].getElementsByClassName('bottomPart')[0];
+                var heightTop = +bottomPartTop.style.height.split('vh')[0];
+                var heightBottom = +bottomPartBottom.style.height.split('vh')[0];
+                if (this.mode == 'insane') {
+                    heightTop += x.direction * 2;
+                    heightBottom -= x.direction * 2;
+                } else {
+                    heightTop += x.direction;
+                    heightBottom -= x.direction;
+                }
 
-              
-               if(heightTop <= 1 || heightBottom <=1 )
-                     x.direction = x.direction*-1;
+                if (heightTop <= 1 || heightBottom <= 1)
+                    x.direction = x.direction * -1;
 
-               bottomPartTop.style.height = `${heightTop}vh`;
-               bottomPartBottom.style.height = `${heightBottom}vh`;
+                bottomPartTop.style.height = `${heightTop}vh`;
+                bottomPartBottom.style.height = `${heightBottom}vh`;
             }
         });
 
@@ -68,16 +59,16 @@ class Game {
     }
     startGame() {
 
-
         var characterLogo = document.getElementById('characterLogo');
         var overlayLogo = document.getElementById('overlayLogo');
-        if (this.character.src === "assets/thor.gif")
-        {
-            characterLogo.setAttribute("src","assets/Thor logo.gif");
+        if (this.character.src === "assets/thor.gif") {
+            characterLogo.setAttribute("src", "assets/Thor logo.gif");
         }
         overlayLogo.style.display = "block";
-        setTimeout(function(){overlayLogo.style.display = "none";},4000);
-        
+        setTimeout(function () {
+            overlayLogo.style.display = "none";
+        }, 4000);
+
 
         this.scoreParagraph = document.createElement('p');
         this.scoreParagraph.setAttribute('id', 'score');
@@ -134,7 +125,7 @@ class Game {
         this.scoreParagraph.textContent = this.score;
     }
     changeMode(str) {
-        if (['easy', 'medium', 'hard','insane'].indexOf(str) !== -1) {
+        if (['easy', 'medium', 'hard', 'insane'].indexOf(str) !== -1) {
             this.mode = str;
         } else {
             this.mode = 'easy';
@@ -166,10 +157,10 @@ class Game {
 
         if (rect1 && rect2) {
             overlap = !(
-                rect1.right < rect2.left ||
-                rect1.left > rect2.right ||
-                rect1.bottom < rect2.top ||
-                rect1.top > rect2.bottom
+                rect1.right - 10 < rect2.left ||
+                rect1.left + 15 > rect2.right ||
+                rect1.bottom - 15 < rect2.top ||
+                rect1.top + 20 > rect2.bottom
             )
         }
         if (overlap) {
@@ -187,7 +178,6 @@ class Game {
     }
 
     gameOver() {
-        
         this.body.innerHTML = '';
         this.body.style.display = 'flex';
         this.body.style.flexDirection = 'column';
@@ -209,7 +199,7 @@ class Game {
         p.textContent = `score : ${this.score}`;
         this.body.appendChild(p);
         var backgroundAudio = document.createElement('audio');
-        backgroundAudio.setAttribute('hidden','');
+        backgroundAudio.setAttribute('hidden', '');
         backgroundAudio.setAttribute('src', 'assets/gameover.mp3');
         backgroundAudio.setAttribute('autoplay', '');
         this.body.appendChild(backgroundAudio);

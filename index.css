@@ -116,7 +116,7 @@ body {
     color: #fcfcfcc0;
     font-family: fantasy;
 }
-
+/* Character Menu Section */
 .charactersMenu {
     display: block;
     padding: 2%;
@@ -154,7 +154,7 @@ body {
     cursor: pointer;
 }
 
-
+/* Overlay */
 #overlayLogo
 {
     position: fixed; 
